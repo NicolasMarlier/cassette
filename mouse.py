@@ -5,7 +5,7 @@ def getMouseEvent(onClick, bLeftDown):
   buf = file.read(3)
   button = ord( buf[0] )
   bLeft = button & 0x1
-  if(bLeft & !bLeftDown):
+  if(bLeft != bLeftDown):
       onClick(bLeft)
   else:
       onClick(bLeft)
