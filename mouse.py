@@ -9,7 +9,7 @@ def getMouseEvent(onClick, bLeftDown):
       onClick(bLeft)
   else:
       onClick(bLeft)
- return bLeft
+  return bLeft
 
 
 def listen(onClick):
