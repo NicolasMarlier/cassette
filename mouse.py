@@ -1,7 +1,7 @@
 # https://stackoverflow.com/questions/15882665/how-to-read-out-scroll-wheel-info-from-dev-input-mice
 import struct
 
-def getMouseEvent(onClick, bLeftDown):
+def getMouseEvent(file, onClick, bLeftDown):
   buf = file.read(3)
   button = ord( buf[0] )
   bLeft = button & 0x1
@@ -14,7 +14,7 @@ def getMouseEvent(onClick, bLeftDown):
 
 def listen(onClick):
   file = open( "/dev/input/mice", "rb" )
-  bLeftDown = false
+  bLeftDown = False
   while True:
-    bLeftDown = getMouseEvent(onClick, bLeftDown)
+    bLeftDown = getMouseEvent(file=file, onClick=onClick, bLeftDown=bLeftDown)
   file.close()
