@@ -31,10 +31,12 @@ def activation():
 def stopMusic():
     mixer.music.fadeout(1000)
 
-def onClick(x, y, button, pressed):
+def onClick(pressed):
     if(pressed):
+        print("pressed")
         activation()
     else:
+        print("unpressed")
         stopMusic()
 
 print("Cassette initialized. Please insert a cassette.")
