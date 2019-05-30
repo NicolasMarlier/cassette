@@ -10,6 +10,7 @@ def initialize_music():
 
 def play_music(token):
     if token == None:
+        playSound("effects/unrecognized.mp3")
         print("No music to play")
         return
     print("playing music", token)
