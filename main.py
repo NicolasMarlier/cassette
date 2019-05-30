@@ -14,13 +14,15 @@ def play_music(token):
         return
     print("playing music", token)
     if token == b'8fad1fc5-203c-4027-916b-07f670d6114a':
-        filename = "music/johnny_b_goode.mp3"
+        playSound("music/johnny_b_goode.mp3")
     elif token == b'68d26688-907d-4dcb-88c4-47b432fa7e5a':
-        filename = "music/hit_the_road_jack.mp3"
+        playSound("music/hit_the_road_jack.mp3")
     else:
         print("Unrecognized music")
+        playSound("effects/unrecognized.mp3")
         return
 
+def playSound(filename):
     mp3 = mutagen.mp3.MP3(filename)
     mixer.init(frequency=mp3.info.sample_rate)
     mixer.music.load(filename)
@@ -36,10 +38,9 @@ def stopMusic():
 
 def onClick(pressed):
     if(pressed):
-        print("pressed")
+        playSound("effects/clicked.mp3")
         activation()
     else:
-        print("unpressed")
         stopMusic()
 
 print("Cassette initialized. Please insert a cassette.")
