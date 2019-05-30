@@ -5,6 +5,9 @@ from mouse import listen
 import mutagen.mp3
 import json
 
+def initialize_music():
+    mixer.init()
+
 def play_music(token):
     if token == None:
         print("No music to play")
@@ -41,4 +44,5 @@ def onClick(pressed):
 
 print("Cassette initialized. Please insert a cassette.")
 
+initialize_music()
 listen(onClick=onClick)
