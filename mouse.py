@@ -4,10 +4,8 @@ import struct
 def getMouseEvent(file, onClick, bLeftDown):
   buf = file.read(3)
   button = buf[0]
-  bLeft = button & 0x1
+  bLeft = button & 0x1 == 1
   if(bLeft != bLeftDown):
-      onClick(bLeft)
-  else:
       onClick(bLeft)
   return bLeft
 
