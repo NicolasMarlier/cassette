@@ -8,6 +8,7 @@ import os
 
 def initialize_music():
     mixer.init()
+    playSound(fullFilename("effects/ready.mp3"))
 
 def fullFilename(filename):
      dirname = os.path.dirname(__file__)
