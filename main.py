@@ -1,10 +1,12 @@
 from pygame import mixer
 from camera import take_picture
 from qrcode import inteprete_picture
-from mouse import listen
+from mouse_v2 import listen
 import mutagen.mp3
 import json
 import os
+
+currentMusicPlaying = None
 
 def initialize_music():
     mixer.init()
@@ -14,20 +16,16 @@ def fullFilename(filename):
      dirname = os.path.dirname(__file__)
      return os.path.join(dirname, filename)
 
-def play_music(token):
+def getMusicFromPicture(token):
     if token == None:
-        playSound(fullFilename("effects/unrecognized.mp3"))
-        print("No music to play")
-        return
-    print("playing music", token)
+        return None
+    print("music", token)
     if token == b'8fad1fc5-203c-4027-916b-07f670d6114a':
-        playSound(fullFilename("music/johnny_b_goode.mp3"))
+        return fullFilename("music/johnny_b_goode.mp3")
     elif token == b'68d26688-907d-4dcb-88c4-47b432fa7e5a':
-        playSound(fullFilename("music/hit_the_road_jack.mp3"))
+        return fullFilename("music/hit_the_road_jack.mp3")
     else:
-        print("Unrecognized music")
-        playSound(fullFilename("effects/unrecognized.mp3"))
-        return
+        return None
 
 def playSound(filename):
     mp3 = mutagen.mp3.MP3(filename)
@@ -35,20 +33,29 @@ def playSound(filename):
     mixer.music.load(filename)
     mixer.music.play()
 
-def activation():
+def getCurrentMusic():
     picture = take_picture()
     data = inteprete_picture(picture)
-    play_music(data)
+    getMusicFromPicture(data)
 
 def stopMusic():
     mixer.music.fadeout(1000)
+    currentMusicPlaying = None
 
-def onClick(pressed):
-    if(pressed):
-        playSound(fullFilename("effects/clicked.mp3"))
-        activation()
+def onClick():
+    music = getCurrentMusic()
+    if(currentMusicPlaying == None):
+        if(music == None):
+            playSound("effects/unrecognized.mp3")
+        else:
+            currentMusicPlaying = music
+            playSound(music)
     else:
-        stopMusic()
+        if(music == None):
+            stopMusic()
+        else:
+            currentMusicPlaying = music
+            playSound(music)
 
 print("Cassette initialized. Please insert a cassette.")
 
