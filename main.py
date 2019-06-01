@@ -49,7 +49,7 @@ def onClick():
         print("no current music playing")
         if(music == None):
             print("no music to play")
-            playSound("effects/unrecognized.mp3")
+            playSound(fullFilename("effects/unrecognized.mp3"))
         else:
             print("playing %s " % music)
             currentMusicPlaying = music
