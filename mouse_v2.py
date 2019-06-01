@@ -24,5 +24,3 @@ class LastMouseActionListenner(Thread):
         self.lastMouseEventAt = time.time()
         print(self.lastMouseEventAt)
       self.file.close()
-
-listen()
