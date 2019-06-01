@@ -44,17 +44,24 @@ def stopMusic():
 def onClick():
     global currentMusicPlaying
     music = getCurrentMusic()
+    print("onClick")
     if(currentMusicPlaying == None):
+        print("no current music playing")
         if(music == None):
+            print("no music to play")
             playSound("effects/unrecognized.mp3")
         else:
+            print("playing %s " % music)
             currentMusicPlaying = music
             playSound(music)
     else:
+        print("Current music playing: %s", currentMusicPlaying)
         if(music == None):
+            print("no music to play, stopping")
             currentMusicPlaying = None
             stopMusic()
         else:
+            print("playing %s " % music)
             currentMusicPlaying = music
             playSound(music)
 
