@@ -40,9 +40,9 @@ def getCurrentMusic():
 
 def stopMusic():
     mixer.music.fadeout(1000)
-    currentMusicPlaying = None
 
 def onClick():
+    global currentMusicPlaying
     music = getCurrentMusic()
     if(currentMusicPlaying == None):
         if(music == None):
@@ -52,6 +52,7 @@ def onClick():
             playSound(music)
     else:
         if(music == None):
+            currentMusicPlaying = None
             stopMusic()
         else:
             currentMusicPlaying = music
