@@ -36,7 +36,7 @@ def playSound(filename):
 def getCurrentMusic():
     picture = take_picture()
     data = inteprete_picture(picture)
-    getMusicFromPicture(data)
+    return getMusicFromPicture(data)
 
 def stopMusic():
     mixer.music.fadeout(1000)
