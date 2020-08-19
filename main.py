@@ -68,4 +68,8 @@ def onClick():
 print("Cassette initialized. Please insert a cassette.")
 
 initialize_music()
-listen(onClick=onClick)
+
+while True:
+    sleep(2)
+    onClick()
+#listen(onClick=onClick)
